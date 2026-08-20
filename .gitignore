@@ -1,0 +1,11 @@
+# macOS Finder junk
+.DS_Store
+
+# Local-only working/archive folders — not used by the live site.
+# Full-resolution originals may still carry GPS/location metadata that
+# was deliberately stripped from the published gallery-XX.jpg files.
+images/gallery/originals/
+images/gallery/ordered gallery/
+
+# FBLA's copyrighted internal document — not ours to redistribute publicly.
+FBLA Brand Guidelines.pdf

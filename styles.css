@@ -1,0 +1,1335 @@
+/* =========================================================
+   Oakdale High School FBLA — Site Stylesheet
+   Light, editorial theme built on FBLA's official brand
+   colors (see FBLA Brand Guidebook, page 18):
+     Navy   #0a2e7f   Blue  #1d52bc   Gold  #f4ab19
+     Cobalt #226add   White #ffffff   Black #2d2b2b
+   Navy carries structure (nav text, footer, headings).
+   Cobalt is the working accent (links, buttons, active states).
+   Gold is used sparingly, for small highlight details only.
+   Beginner tip: everything is controlled from the :root
+   tokens below — change a value once, it updates everywhere.
+   ========================================================= */
+
+:root {
+  --navy: #0a2e7f;
+  --blue: #1d52bc;
+  --gold: #f4ab19;
+  --cobalt: #226add;
+  --white: #ffffff;
+  --black: #2d2b2b;
+
+  --bg: #ffffff;
+  --bg-alt: #f4f7fc;
+  --text: #1c2333;
+  --text-muted: #5c6478;
+  --border: #e2e7f0;
+
+  /* Headings/titles: real Apercu Pro (FBLA's actual brand font, page 29)
+     if licensed files are ever added — see fonts/README.txt — otherwise
+     Plus Jakarta Sans, the closest free Google Font to it, loaded for
+     real below. Arial is the last-resort fallback either way.
+     Body/paragraph text: Inter, loaded for real below. */
+  --font-heading: "Apercu Pro", "Plus Jakarta Sans", Arial, "Helvetica Neue", sans-serif;
+  --font-body: "Inter", Arial, "Helvetica Neue", sans-serif;
+
+  --radius: 8px;
+  --radius-sm: 6px;
+  --max-width: 1140px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Real Apercu Pro webfont files, if you have a license for them.
+   These @font-face rules just fail silently (and the font-family
+   stacks above fall through to Arial) until files actually exist at
+   these paths — see fonts/README.txt to activate them. */
+@font-face {
+  font-family: "Apercu Pro";
+  src: url("fonts/ApercuPro-Regular.woff2") format("woff2"),
+       url("fonts/ApercuPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src: url("fonts/ApercuPro-Medium.woff2") format("woff2"),
+       url("fonts/ApercuPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src: url("fonts/ApercuPro-Bold.woff2") format("woff2"),
+       url("fonts/ApercuPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src: url("fonts/ApercuPro-Italic.woff2") format("woff2"),
+       url("fonts/ApercuPro-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--cobalt);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Wider than the standard reading-width container — used for the
+   photo grid, which benefits from more room, unlike text content. */
+.container--wide {
+  max-width: 1700px;
+}
+
+section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-tint {
+  background: var(--bg-alt);
+}
+
+h1, h2, h3 {
+  color: var(--navy);
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+h2, h3 {
+  font-family: var(--font-heading);
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+.section-intro {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--text);
+  max-width: 620px;
+  margin-bottom: 44px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cobalt);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  margin-bottom: 16px;
+  font-family: var(--font-body);
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 3px;
+  background: var(--gold);
+}
+
+/* Small, sparing gold accent for a key word or two in body copy.
+   This is the exact brand gold (#f4ab19) per your request — note it
+   only has ~2.1:1 contrast on white (WCAG normally wants 4.5:1), so
+   it's kept to short accent words, never full paragraphs. */
+.accent {
+  color: var(--gold);
+}
+
+/* ---------- Tri-color brand bar ---------- */
+/* A flat 3-stripe bar (no blend) echoing the navy / cobalt / gold
+   palette — a small nod to FBLA's colors without touching the logo. */
+
+.brand-bar {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--navy) 0%,
+    var(--navy) 33.33%,
+    var(--cobalt) 33.33%,
+    var(--cobalt) 66.66%,
+    var(--gold) 66.66%,
+    var(--gold) 100%
+  );
+}
+
+/* ---------- Site-wide temporary banner ---------- */
+/* Filled in by script.js from banner.txt — stays empty and collapses
+   to nothing if that file has no TEXT, or today is outside its
+   START/END dates. See banner.txt for how to edit it. */
+.site-banner {
+  display: none;
+  background: var(--gold);
+  color: var(--navy);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 9px 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.site-banner.visible {
+  display: block;
+}
+
+.site-banner-track {
+  display: inline-flex;
+  width: max-content;
+  /* script.js repeats the message 8 times back-to-back so the strip is
+     always full edge-to-edge, even on wide screens. Scrolling by 1/8th
+     of the track's width each loop lands exactly on the next copy, so
+     it repeats seamlessly with no jump or gap. */
+  animation: banner-scroll 28s linear infinite;
+}
+
+.site-banner:hover .site-banner-track {
+  animation-play-state: paused;
+}
+
+.site-banner-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 48px;
+}
+
+.site-banner a {
+  color: var(--navy);
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+@keyframes banner-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-12.5%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-banner {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .site-banner-track {
+    animation: none;
+    display: block;
+    width: auto;
+  }
+
+  .site-banner-item:not(:first-child) {
+    display: none;
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.96rem;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  /* thin gold accent bar along the bottom edge of every button */
+  box-shadow: inset 0 -3px 0 var(--gold);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover {
+    transform: none;
+  }
+}
+
+.btn-primary {
+  background: var(--cobalt);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: #1a54b3;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn-gold:hover {
+  background: #dd9910;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-outline:hover {
+  background: var(--bg-alt);
+  border-color: var(--cobalt);
+  color: var(--cobalt);
+}
+
+/* ---------- Header / Nav ---------- */
+
+.site-header {
+  background: rgba(255, 255, 255, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-brand:hover {
+  text-decoration: none;
+}
+
+/* Two stacked lines of text next to the logo in the header: the main
+   wordmark, plus a smaller location line underneath. */
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-brand .wordmark {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.wordmark-sub {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-size: 0.6rem;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* The "Oakdale High School" wordmark — kept as its own styled text
+   element, deliberately separate from the FBLA logo image next to it,
+   since the logo itself can't be altered or combined with other marks. */
+.wordmark {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+/* Official FBLA logo slot.
+   Drop the real logo file at images/fbla-logo.png (see images/README.txt)
+   and it will replace this placeholder automatically — no code changes needed. */
+.nav-logo-wrap {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.nav-logo-placeholder {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px dashed var(--navy);
+  border-radius: var(--radius-sm);
+  color: var(--navy);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 1.25;
+  white-space: nowrap;
+  opacity: 0.55;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: var(--font-heading);
+  color: var(--navy);
+  font-weight: 700;
+  opacity: 0.7;
+  padding: 10px 14px;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  opacity: 1;
+  text-decoration: none;
+  border-bottom-color: var(--gold);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 5px 0;
+  background: var(--navy);
+  border-radius: 1px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  padding: 64px 0;
+  text-align: center;
+  /* diagonal lines, close together, alternating between a regular
+     line and a lighter one for some rhythm */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(34, 106, 221, 0.12) 0px,
+    rgba(34, 106, 221, 0.12) 1px,
+    transparent 1px,
+    transparent 20px,
+    rgba(34, 106, 221, 0.06) 20px,
+    rgba(34, 106, 221, 0.06) 21px,
+    transparent 21px,
+    transparent 40px
+  );
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 32px;
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+  max-width: 920px;
+  /* a solid, hard-edged offset instead of a blurred glow — the same
+     stamped/poster technique already used on the hero photo frame */
+  text-shadow: 2px 2px 4px var(--gold);
+}
+
+.hero p {
+  font-family: var(--font-heading);
+  color: var(--text);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  font-weight: 500;
+  max-width: 640px;
+  margin-bottom: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* A framed placeholder, styled like a printed photo with a hard-edged
+   offset border — a deliberate, crafted look instead of a soft glow. */
+.hero-art {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  box-shadow: 10px 10px 0 var(--gold);
+  width: 100%;
+  max-width: 860px;
+  /* matches the actual cropped photo's proportions exactly, so the
+     browser doesn't need to crop it any further */
+  aspect-ratio: 4864 / 2672;
+  overflow: hidden;
+  margin: 10px auto 0;
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Stat bar ---------- */
+
+.stat-bar {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stat-item {
+  flex: 1 1 200px;
+  padding: 28px 30px;
+  border-right: 1px solid var(--border);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  color: var(--gold);
+  font-weight: 600;
+  display: block;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ---------- Page hero (interior pages) ---------- */
+
+.page-hero {
+  position: relative;
+  /* a solid navy base with a more noticeable cobalt dot-grid texture
+     and a soft cobalt glow blob — the wave below (::after) handles the
+     edge transition with its own glow, so no fade-to-white needed here */
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(circle, rgba(34, 106, 221, 0.25) 1.2px, transparent 1.8px),
+    radial-gradient(120% 160% at 12% -30%, rgba(34, 106, 221, 0.3), transparent 55%);
+  background-size: 20px 20px, auto;
+  background-repeat: repeat, no-repeat;
+  padding: 68px 0 56px;
+}
+
+/* A thin glowing line where navy meets white, instead of a wave. */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--cobalt);
+  box-shadow: 0 0 12px 2px rgba(34, 106, 221, 0.7), 0 0 26px 4px rgba(34, 106, 221, 0.4);
+  pointer-events: none;
+}
+
+.page-hero h1 {
+  color: var(--gold);
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 18px rgba(244, 171, 25, 0.55), 0 0 40px rgba(244, 171, 25, 0.25);
+}
+
+.page-hero p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+  max-width: 560px;
+}
+
+/* ---------- Steps / timeline (How to Join) ---------- */
+
+.steps {
+  border-left: 2px solid var(--border);
+  margin: 40px 0 8px 17px;
+  padding-left: 34px;
+}
+
+.step {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.step-num {
+  position: absolute;
+  left: -52px;
+  top: -2px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.step h3 {
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.step p {
+  color: var(--text);
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ---------- Spec rows (definition-list style, About page) ---------- */
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.spec-row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-label {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--cobalt);
+  padding-top: 5px;
+}
+
+.spec-row h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.spec-row p {
+  color: var(--text);
+  max-width: 620px;
+  margin: 0;
+}
+
+/* ---------- Event rows (table-style list) ---------- */
+
+.event-list {
+  border-top: 1px solid var(--border);
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+
+.event-row .event-when {
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.event-row h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.event-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.event-title-row h3 {
+  margin-bottom: 0;
+}
+
+.event-title-row .event-link {
+  margin-top: 0;
+}
+
+.event-row p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.event-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 16px;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+}
+
+.event-link:hover {
+  background: #dd9910;
+  text-decoration: none;
+}
+
+/* ---------- Simple cards (used sparingly, not as a default grid) ---------- */
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--cobalt);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ---------- Plain text columns (no card chrome) ---------- */
+
+.text-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.text-cols > div {
+  padding-left: 28px;
+  border-left: 1px solid var(--border);
+}
+
+.text-cols > div:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.text-cols h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.text-cols p {
+  color: var(--text);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .text-cols {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .text-cols > div {
+    padding-left: 0;
+    border-left: none;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .text-cols > div:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+/* ---------- Resource list (icon-free row list) ---------- */
+
+.resource-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+}
+
+.resource-item {
+  padding: 22px 0;
+  border-top: 1px solid var(--border);
+}
+
+.resource-item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.resource-item p {
+  color: var(--text);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.resource-group-label {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--cobalt);
+  margin-top: 8px;
+}
+
+.resource-group-label:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Officers ---------- */
+
+.officer-card {
+  text-align: center;
+  padding: 40px 28px;
+}
+
+.officer-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  border: 2px solid var(--gold);
+}
+
+.officer-card h3 {
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.officer-position {
+  color: var(--cobalt);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Competitive events callout ---------- */
+
+.events-callout {
+  background-color: var(--navy);
+  /* a cobalt dot grid for texture, matching the page-hero bands */
+  background-image: radial-gradient(circle, rgba(34, 106, 221, 0.25) 1.2px, transparent 1.8px);
+  background-size: 20px 20px;
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 44px;
+}
+
+.events-callout h2 {
+  color: var(--white);
+  text-shadow: 0 0 18px rgba(244, 171, 25, 0.55), 0 0 40px rgba(244, 171, 25, 0.25);
+}
+
+.events-callout .eyebrow {
+  color: var(--gold);
+}
+
+.events-callout .eyebrow::before {
+  background: var(--cobalt);
+}
+
+.events-callout p {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 620px;
+  /* Medium weight for body copy on dark backgrounds, per the
+     guidebook's readability guidance (page 29). */
+  font-weight: 500;
+}
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.link-list li a {
+  display: block;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 15px 18px;
+  font-weight: 600;
+  transition: border-color 0.2s ease;
+}
+
+.link-list li a:hover {
+  border-color: var(--gold);
+  text-decoration: none;
+}
+
+.link-list li a::after {
+  content: " \2192";
+  color: var(--gold);
+}
+
+/* ---------- Gallery ---------- */
+
+
+/* CSS grid (not multi-column) so photos fill left-to-right then wrap
+   to the next row, like reading order — multi-column layout fills an
+   entire column top-to-bottom before moving to the next one instead. */
+/* Column count and item positions are calculated in script.js (true
+   masonry — each photo packed into whichever column is currently
+   shortest, in reading order — isn't achievable with CSS alone). If
+   JavaScript is unavailable, items still stack normally in one column,
+   just without the tight packing. */
+.gallery-grid {
+  position: relative;
+}
+
+.gallery-item {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Full, uncropped photos at their natural proportions — rows align at
+   the top, so shorter photos leave a gap below them before the next
+   row starts, but nothing is ever cut off. */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* A short event tag overlaid on the corner of the photo, instead of a
+   caption line underneath — avoids repeating the same event name
+   under every photo from that event. */
+.gallery-tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(10, 46, 127, 0.82);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+/* ---------- Contact ---------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.contact-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+
+.contact-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--cobalt);
+  padding-top: 2px;
+}
+
+.contact-item p {
+  margin: 0;
+  color: var(--text);
+}
+
+.contact-item a {
+  margin: 0;
+  color: var(--cobalt);
+}
+
+.contact-item a:hover {
+  color: var(--gold);
+}
+
+.get-involved {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+}
+
+.get-involved ul {
+  font-family: var(--font-body);
+  padding-left: 20px;
+  color: var(--text);
+}
+
+.get-involved li {
+  margin-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background-color: var(--navy);
+  /* a cobalt dot grid for texture, matching the page-hero bands */
+  background-image: radial-gradient(circle, rgba(34, 106, 221, 0.25) 1.2px, transparent 1.8px);
+  background-size: 20px 20px;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 56px 0 26px;
+  /* Medium weight for body copy on a dark background, per the
+     guidebook's readability guidance (page 29). */
+  font-weight: 500;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.footer-brand .wordmark {
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.footer-brand .nav-logo-img {
+  height: 40px;
+}
+
+.footer-brand .nav-logo-placeholder {
+  height: 40px;
+  font-size: 0.58rem;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+}
+
+.footer-col p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-col h4 {
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Two columns for the longer link list, so that column doesn't tower
+   over the others and make the whole footer taller than it needs to be. */
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+.footer-col li {
+  margin-bottom: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-col a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 22px;
+  font-size: 0.8rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .spec-row,
+  .event-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s var(--ease);
+  }
+
+  .nav-links.open {
+    max-height: 400px;
+  }
+
+  .nav-links li {
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-links li:first-child {
+    border-top: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 24px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-links a.active {
+    border-left-color: var(--gold);
+  }
+
+  .hero {
+    min-height: 62vh;
+    padding: 56px 0 40px;
+  }
+
+  section {
+    padding: 56px 0;
+  }
+
+  .events-callout {
+    padding: 26px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    margin-left: 8px;
+    padding-left: 26px;
+  }
+
+  .step-num {
+    left: -44px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+}

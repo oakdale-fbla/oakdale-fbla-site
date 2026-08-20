@@ -1,0 +1,5 @@
+TEXT: 🌯 Chipotle Fundraiser · Oct 13, 4-8pm · Support Oakdale FBLA!
+LINK: https://socialportal.chipotle.com/fundraiser/social/portal/flyer/oVqbES1fZZKOA2eGT2AqeJlCsj9FOuqeHZa76y8xX5FLS9xcXh91T6kmbztEfxerxvgJwFwhWzjIDDRwNpmAmFAtuvqnUGKGOOKUnQJdbp1JSVYxb3bJ6l4WuQUu7JWB/624234-flyer.pdf
+LINKTEXT: Chipotle Fundraiser
+START: 2026-09-22
+END: 2026-10-13
