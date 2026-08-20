@@ -437,12 +437,14 @@ h3 {
   height: 30px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .nav-logo-img {
   height: 30px;
   width: auto;
   display: block;
+  flex-shrink: 0;
 }
 
 .nav-logo-placeholder {
@@ -1270,6 +1272,26 @@ h3 {
 
   .card-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Logo keeps its true proportions (never squished) — instead it, and
+     the wordmark text next to it, scale down together so the whole
+     header row still fits on one line on narrow phones. */
+  .nav-brand {
+    gap: 8px;
+  }
+
+  .nav-logo-wrap,
+  .nav-logo-img {
+    height: 24px;
+  }
+
+  .nav-brand .wordmark {
+    font-size: 0.85rem;
+  }
+
+  .wordmark-sub {
+    font-size: 0.55rem;
   }
 
   .nav-links {
