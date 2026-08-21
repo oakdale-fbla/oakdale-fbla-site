@@ -408,6 +408,7 @@ h3 {
 
 .wordmark-sub {
   font-family: var(--font-heading);
+  text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
   font-size: 0.6rem;
@@ -420,6 +421,7 @@ h3 {
    since the logo itself can't be altered or combined with other marks. */
 .wordmark {
   font-family: var(--font-heading);
+  text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 600;
   font-size: 0.68rem;
