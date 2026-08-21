@@ -1247,6 +1247,13 @@ h3 {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* With only 2 columns, the 3rd column (Contact) would otherwise wrap
+     to sit under the 1st (address), not under the 2nd (Explore). This
+     pins it directly under Explore instead. */
+  .footer-col:last-child {
+    grid-column: 2;
+  }
+
   .spec-row,
   .event-row {
     grid-template-columns: 1fr;
