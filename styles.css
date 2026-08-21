@@ -1258,33 +1258,14 @@ h3 {
   }
 }
 
-@media (max-width: 720px) {
+/* The nav bar switches to the hamburger menu well before phone width —
+   at normal (non-hamburger) width, "Oakdale High School" next to the
+   logo and all 6 nav links have to fit on one line with nothing to
+   give, so this needs to kick in as soon as that stops fitting
+   comfortably, not just at narrow phone widths. */
+@media (max-width: 980px) {
   .nav-toggle {
     display: block;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Logo keeps its true proportions (never squished) — instead it, and
-     the wordmark text next to it, scale down together so the whole
-     header row still fits on one line on narrow phones. */
-  .nav-brand {
-    gap: 8px;
-  }
-
-  .nav-logo-wrap,
-  .nav-logo-img {
-    height: 24px;
-  }
-
-  .nav-brand .wordmark {
-    font-size: 0.85rem;
-  }
-
-  .wordmark-sub {
-    font-size: 0.55rem;
   }
 
   .nav-links {
@@ -1322,6 +1303,32 @@ h3 {
 
   .nav-links a.active {
     border-left-color: var(--gold);
+  }
+}
+
+@media (max-width: 720px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Logo keeps its true proportions (never squished) — instead it, and
+     the wordmark text next to it, scale down together so the whole
+     header row still fits on one line on narrow phones. */
+  .nav-brand {
+    gap: 8px;
+  }
+
+  .nav-logo-wrap,
+  .nav-logo-img {
+    height: 24px;
+  }
+
+  .nav-brand .wordmark {
+    font-size: 0.85rem;
+  }
+
+  .wordmark-sub {
+    font-size: 0.55rem;
   }
 
   .hero {
