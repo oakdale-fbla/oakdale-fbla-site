@@ -26,7 +26,7 @@
   --border: #e2e7f0;
 
   /* Headings/titles: real Apercu Pro (FBLA's actual brand font, page 29)
-     if licensed files are ever added — see fonts/README.txt — otherwise
+     if licensed files are ever added — see assets/fonts/README.txt — otherwise
      Plus Jakarta Sans, the closest free Google Font to it, loaded for
      real below. Arial is the last-resort fallback either way.
      Body/paragraph text: Inter, loaded for real below. */
@@ -48,11 +48,11 @@
 /* Real Apercu Pro webfont files, if you have a license for them.
    These @font-face rules just fail silently (and the font-family
    stacks above fall through to Arial) until files actually exist at
-   these paths — see fonts/README.txt to activate them. */
+   these paths — see assets/fonts/README.txt to activate them. */
 @font-face {
   font-family: "Apercu Pro";
-  src: url("fonts/ApercuPro-Regular.woff2") format("woff2"),
-       url("fonts/ApercuPro-Regular.woff") format("woff");
+  src: url("../fonts/ApercuPro-Regular.woff2") format("woff2"),
+       url("../fonts/ApercuPro-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -60,8 +60,8 @@
 
 @font-face {
   font-family: "Apercu Pro";
-  src: url("fonts/ApercuPro-Medium.woff2") format("woff2"),
-       url("fonts/ApercuPro-Medium.woff") format("woff");
+  src: url("../fonts/ApercuPro-Medium.woff2") format("woff2"),
+       url("../fonts/ApercuPro-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -69,8 +69,8 @@
 
 @font-face {
   font-family: "Apercu Pro";
-  src: url("fonts/ApercuPro-Bold.woff2") format("woff2"),
-       url("fonts/ApercuPro-Bold.woff") format("woff");
+  src: url("../fonts/ApercuPro-Bold.woff2") format("woff2"),
+       url("../fonts/ApercuPro-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -78,8 +78,8 @@
 
 @font-face {
   font-family: "Apercu Pro";
-  src: url("fonts/ApercuPro-Italic.woff2") format("woff2"),
-       url("fonts/ApercuPro-Italic.woff") format("woff");
+  src: url("../fonts/ApercuPro-Italic.woff2") format("woff2"),
+       url("../fonts/ApercuPro-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -218,9 +218,9 @@ h3 {
 }
 
 /* ---------- Site-wide temporary banner ---------- */
-/* Filled in by script.js from banner.txt — stays empty and collapses
+/* Filled in by script.js from content/banner.txt — stays empty and collapses
    to nothing if that file has no TEXT, or today is outside its
-   START/END dates. See banner.txt for how to edit it. */
+   START/END dates. See content/banner.txt for how to edit it. */
 .site-banner {
   display: none;
   background: var(--gold);
@@ -435,7 +435,7 @@ h3 {
 }
 
 /* Official FBLA logo slot.
-   Drop the real logo file at images/fbla-logo.png (see images/README.txt)
+   Drop the real logo file at assets/images/fbla-logo.png (see assets/images/README.txt)
    and it will replace this placeholder automatically — no code changes needed. */
 .nav-logo-wrap {
   position: relative;

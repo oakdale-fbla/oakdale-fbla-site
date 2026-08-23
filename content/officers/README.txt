@@ -2,9 +2,9 @@ HOW TO EDIT THE OFFICERS PAGE (NO CODE NEEDED)
 ================================================
 
 This folder is what fills in the officer cards on officers.html —
-same idea as banner.txt for the site banner. Edit these plain text
-files and the website updates automatically. No HTML/CSS/JS editing
-required.
+same idea as content/banner.txt for the site banner. Edit these plain
+text files and the website updates automatically. No HTML/CSS/JS
+editing required.
 
 
 TO EDIT THE CURRENT OFFICER TEAM

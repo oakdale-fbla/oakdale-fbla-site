@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Site-wide temporary banner, driven by banner.txt (see that file for
-  // how to edit it). Shows nothing if TEXT is empty, or today is
-  // outside the START/END dates.
+  // Site-wide temporary banner, driven by content/banner.txt (see that
+  // file for how to edit it). Shows nothing if TEXT is empty, or today
+  // is outside the START/END dates.
   var bannerEl = document.querySelector(".site-banner");
   if (bannerEl) {
-    fetch("banner.txt")
+    fetch("content/banner.txt")
       .then(function (res) {
         return res.ok ? res.text() : "";
       })
@@ -88,13 +88,15 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch(function () {
         // banner.txt missing or unreadable (e.g. opened as a local
-        // file instead of through a server) — just show nothing.
+        // file instead of through a server, so content/banner.txt
+        // 404s) — just show nothing.
       });
   }
 
-  // Officers page: officer teams live in the officers/ folder, one
-  // plain-text file per year (see officers/README.txt), listed in
-  // officers/years.txt with the most recent year first. This builds
+  // Officers page: officer teams live in the content/officers/
+  // folder, one plain-text file per year (see
+  // content/officers/README.txt), listed in
+  // content/officers/years.txt with the most recent year first. This builds
   // the year dropdown and fills in the card grid from those files —
   // editing the .txt files is all that's needed to update officers or
   // add a new year, no HTML/JS changes required.
@@ -116,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadOfficerYear(year) {
       requestedOfficerYear = year;
 
-      fetch("officers/" + year + ".txt")
+      fetch("content/officers/" + year + ".txt")
         .then(function (res) {
           return res.ok ? res.text() : "";
         })
@@ -161,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    fetch("officers/years.txt")
+    fetch("content/officers/years.txt")
       .then(function (res) {
         return res.ok ? res.text() : "";
       })
@@ -186,8 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(function () {
-        // officers/years.txt missing or unreadable — leave the
-        // dropdown and grid empty rather than showing a broken page.
+        // content/officers/years.txt missing or unreadable — leave
+        // the dropdown and grid empty rather than showing a broken page.
       });
 
     officerYearSelect.addEventListener("change", function () {

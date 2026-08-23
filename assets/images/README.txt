@@ -16,17 +16,17 @@ different logo variant for each:
 
 1. Nav bar (white background) → use the standard FULL-COLOR logo.
    Save it as:
-     images/fbla-logo.png
+     assets/images/fbla-logo.png
 
 2. Footer (navy background) → use the ALL-WHITE / reversed logo
    (per the guidebook, this is the version meant for navy backgrounds).
    Save it as:
-     images/fbla-logo-white.png
+     assets/images/fbla-logo-white.png
 
 Steps:
 1. Go to fbla.org/brandcenter (linked at the end of the Brand Guidebook PDF)
    and download both versions above.
-2. Save them into this "images" folder with the exact filenames listed
+2. Save them into this "assets/images" folder with the exact filenames listed
    above. PNG or SVG both work — if you use SVG, rename the file
    references in the HTML files (search for "fbla-logo.png" and
    "fbla-logo-white.png") to match.
@@ -43,11 +43,11 @@ OFFICER PHOTOS
 Officer headshots go in this folder too. The site currently shows navy
 circles with initials instead of real photos so nothing looks broken.
 To swap one in:
-1. Add the image file here (e.g. images/officer-joshitha.jpg).
+1. Add the image file here (e.g. assets/images/officer-joshitha.jpg).
 2. Replace a placeholder element like:
      <div class="officer-photo">JS</div>
    with:
-     <img class="officer-photo" src="images/officer-joshitha.jpg" alt="Joshitha Sriperambudur">
+     <img class="officer-photo" src="assets/images/officer-joshitha.jpg" alt="Joshitha Sriperambudur">
    You may want to add "object-fit: cover;" in styles.css under
    .officer-photo if the photo looks stretched.
 
@@ -57,10 +57,10 @@ This is a static site with no database, so there's no "upload" button —
 adding a photo means putting the file in this folder and pointing to it
 in gallery.html, the same pattern as above.
 
-The home page photo lives at images/home-hero.jpg. The gallery photos
-live in images/gallery/, named gallery-01.jpg through gallery-32.jpg —
+The home page photo lives at assets/images/home-hero.jpg. The gallery photos
+live in assets/images/gallery/, named gallery-01.jpg through gallery-27.jpg —
 the untouched originals (before renaming/converting) are kept in
-images/gallery/originals/ as a backup, just in case.
+assets/images/gallery/originals/ as a backup, just in case.
 
 IMPORTANT — iPhone photos are often .HEIC files, which most browsers
 (anything besides Safari) can't display. Before adding a new one:
@@ -76,11 +76,11 @@ IMPORTANT — iPhone photos are often .HEIC files, which most browsers
    photos already had this done.)
 
 To add a new gallery photo once it's a .jpg:
-1. Save it into images/gallery/ (any filename works, doesn't need to
+1. Save it into assets/images/gallery/ (any filename works, doesn't need to
    match the gallery-NN.jpg pattern).
 2. In gallery.html, copy one whole ".gallery-item" block, e.g.:
      <div class="gallery-item">
-       <img src="images/gallery/gallery-01.jpg" alt="Oakdale FBLA chapter photo">
+       <img src="assets/images/gallery/gallery-01.jpg" alt="Oakdale FBLA chapter photo">
        <span class="gallery-tag">[Event]</span>
      </div>
    paste it before the </div> that closes ".gallery-grid", and point
