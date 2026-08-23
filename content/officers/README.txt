@@ -29,6 +29,31 @@ Example:
   name + first letter of the last name. You don't need to type those.
 
 
+ADDING A REAL PHOTO (OPTIONAL)
+--------------------------------
+By default every officer just shows the initials circle above — no
+photo needed. To use a real photo instead, add a THIRD " | " field
+with the photo's filename:
+
+    Full Name | Position | photo-filename.jpg
+
+Example:
+
+    Joshitha Sriperambudur | President | joshitha.jpg
+
+Steps:
+1. Save the photo file into assets/images/officers/ (see that
+   folder's own README.txt for photo prep — HEIC conversion, stripping
+   location/device metadata, etc. — same steps as gallery photos).
+2. Add the filename as a third field on that officer's line, exactly
+   matching what you saved it as.
+3. Refresh the page — no other changes needed.
+
+If you leave the third field off, mistype the filename, or the file
+just isn't there, that officer's card automatically falls back to
+showing the initials circle instead — nothing breaks either way.
+
+
 TO START A NEW YEAR'S OFFICER TEAM
 ------------------------------------
 When a new officer team takes over (e.g. for 2027-2028):
