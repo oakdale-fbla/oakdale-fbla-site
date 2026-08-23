@@ -38,6 +38,11 @@
   --max-width: 1140px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Reused as-is in a few spots (page-hero, footer, events-callout) —
+     defined once here so tuning it only ever needs one edit. */
+  --dot-grid: radial-gradient(circle, rgba(34, 106, 221, 0.2) 1.2px, transparent 1.8px);
+  --gold-glow: 0 0 18px rgba(244, 171, 25, 0.55), 0 0 40px rgba(244, 171, 25, 0.25);
 }
 
 /* Real Apercu Pro webfont files, if you have a license for them.
@@ -634,7 +639,7 @@ h3 {
      edge transition with its own glow, so no fade-to-white needed here */
   background-color: var(--navy);
   background-image:
-    radial-gradient(circle, rgba(34, 106, 221, 0.2) 1.2px, transparent 1.8px),
+    var(--dot-grid),
     radial-gradient(120% 160% at 12% -30%, rgba(34, 106, 221, 0.3), transparent 55%);
   background-size: 20px 20px, auto;
   background-repeat: repeat, no-repeat;
@@ -658,7 +663,7 @@ h3 {
   color: var(--gold);
   font-size: 2.3rem;
   margin-bottom: 10px;
-  text-shadow: 0 0 18px rgba(244, 171, 25, 0.55), 0 0 40px rgba(244, 171, 25, 0.25);
+  text-shadow: var(--gold-glow);
 }
 
 .page-hero p {
@@ -1002,7 +1007,7 @@ h3 {
 .events-callout {
   background-color: var(--navy);
   /* a cobalt dot grid for texture, matching the page-hero bands */
-  background-image: radial-gradient(circle, rgba(34, 106, 221, 0.2) 1.2px, transparent 1.8px);
+  background-image: var(--dot-grid);
   background-size: 20px 20px;
   color: var(--white);
   border-radius: var(--radius);
@@ -1011,7 +1016,7 @@ h3 {
 
 .events-callout h2 {
   color: var(--white);
-  text-shadow: 0 0 18px rgba(244, 171, 25, 0.55), 0 0 40px rgba(244, 171, 25, 0.25);
+  text-shadow: var(--gold-glow);
 }
 
 .events-callout .eyebrow {
@@ -1174,7 +1179,7 @@ h3 {
 .site-footer {
   background-color: var(--navy);
   /* a cobalt dot grid for texture, matching the page-hero bands */
-  background-image: radial-gradient(circle, rgba(34, 106, 221, 0.2) 1.2px, transparent 1.8px);
+  background-image: var(--dot-grid);
   background-size: 20px 20px;
   color: rgba(255, 255, 255, 0.75);
   padding: 56px 0 26px;

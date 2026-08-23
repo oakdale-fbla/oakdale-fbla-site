@@ -46,6 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
         var track = document.createElement("div");
         track.className = "site-banner-track";
 
+        function makeBannerLink(text) {
+          var a = document.createElement("a");
+          a.href = fields.LINK;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = text;
+          return a;
+        }
+
         // If LINKTEXT names a piece of the message, only that piece
         // becomes clickable; the rest stays plain text. Otherwise (or if
         // that piece can't be found in TEXT), the whole message links.
@@ -63,22 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
             var after = fields.TEXT.slice(linkStart + fields.LINKTEXT.length);
 
             if (before) item.appendChild(document.createTextNode(before));
-
-            var a = document.createElement("a");
-            a.href = fields.LINK;
-            a.target = "_blank";
-            a.rel = "noopener";
-            a.textContent = fields.LINKTEXT;
-            item.appendChild(a);
-
+            item.appendChild(makeBannerLink(fields.LINKTEXT));
             if (after) item.appendChild(document.createTextNode(after));
           } else if (fields.LINK) {
-            var a = document.createElement("a");
-            a.href = fields.LINK;
-            a.target = "_blank";
-            a.rel = "noopener";
-            a.textContent = fields.TEXT;
-            item.appendChild(a);
+            item.appendChild(makeBannerLink(fields.TEXT));
           } else {
             item.textContent = fields.TEXT;
           }
@@ -111,12 +108,21 @@ document.addEventListener("DOMContentLoaded", function () {
       return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     }
 
+    // Tracks the most recently requested year so a slower, older fetch
+    // can't overwrite the grid after a newer selection has already
+    // loaded (e.g. clicking through years quickly on a slow connection).
+    var requestedOfficerYear = null;
+
     function loadOfficerYear(year) {
+      requestedOfficerYear = year;
+
       fetch("officers/" + year + ".txt")
         .then(function (res) {
           return res.ok ? res.text() : "";
         })
         .then(function (raw) {
+          if (year !== requestedOfficerYear) return;
+
           officerGrid.innerHTML = "";
 
           raw.split("\n").forEach(function (line) {
@@ -150,6 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(function () {
           // Missing/unreadable year file — leave the grid empty
           // rather than showing a broken page.
+          if (year !== requestedOfficerYear) return;
+          officerGrid.innerHTML = "";
         });
     }
 
