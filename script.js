@@ -95,6 +95,98 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  // Officers page: officer teams live in the officers/ folder, one
+  // plain-text file per year (see officers/README.txt), listed in
+  // officers/years.txt with the most recent year first. This builds
+  // the year dropdown and fills in the card grid from those files —
+  // editing the .txt files is all that's needed to update officers or
+  // add a new year, no HTML/JS changes required.
+  var officerGrid = document.querySelector("#officer-grid");
+  var officerYearSelect = document.querySelector("#officer-year-select");
+
+  if (officerGrid && officerYearSelect) {
+    function initialsFor(name) {
+      var parts = name.trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function loadOfficerYear(year) {
+      fetch("officers/" + year + ".txt")
+        .then(function (res) {
+          return res.ok ? res.text() : "";
+        })
+        .then(function (raw) {
+          officerGrid.innerHTML = "";
+
+          raw.split("\n").forEach(function (line) {
+            var parts = line.split("|");
+            if (parts.length < 2) return;
+
+            var name = parts[0].trim();
+            var position = parts[1].trim();
+            if (!name || !position) return;
+
+            var card = document.createElement("div");
+            card.className = "card officer-card";
+
+            var photo = document.createElement("div");
+            photo.className = "officer-photo";
+            photo.textContent = initialsFor(name);
+
+            var heading = document.createElement("h3");
+            heading.textContent = name;
+
+            var positionEl = document.createElement("div");
+            positionEl.className = "officer-position";
+            positionEl.textContent = position;
+
+            card.appendChild(photo);
+            card.appendChild(heading);
+            card.appendChild(positionEl);
+            officerGrid.appendChild(card);
+          });
+        })
+        .catch(function () {
+          // Missing/unreadable year file — leave the grid empty
+          // rather than showing a broken page.
+        });
+    }
+
+    fetch("officers/years.txt")
+      .then(function (res) {
+        return res.ok ? res.text() : "";
+      })
+      .then(function (raw) {
+        var years = raw
+          .split("\n")
+          .map(function (line) {
+            return line.trim();
+          })
+          .filter(Boolean);
+
+        years.forEach(function (year) {
+          var option = document.createElement("option");
+          option.value = year;
+          option.textContent = year;
+          officerYearSelect.appendChild(option);
+        });
+
+        if (years.length) {
+          officerYearSelect.value = years[0];
+          loadOfficerYear(years[0]);
+        }
+      })
+      .catch(function () {
+        // officers/years.txt missing or unreadable — leave the
+        // dropdown and grid empty rather than showing a broken page.
+      });
+
+    officerYearSelect.addEventListener("change", function () {
+      loadOfficerYear(officerYearSelect.value);
+    });
+  }
+
   // Fade + slide each section into view as the user scrolls.
   // CSS handles turning this off for prefers-reduced-motion (see .reveal
   // in styles.css), so this always runs the same way here.

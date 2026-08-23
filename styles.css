@@ -932,6 +932,37 @@ h3 {
 
 /* ---------- Officers ---------- */
 
+.officer-year-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.officer-year-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--navy);
+}
+
+.year-select {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.year-select:focus {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
 .officer-card {
   text-align: center;
   padding: 40px 28px;

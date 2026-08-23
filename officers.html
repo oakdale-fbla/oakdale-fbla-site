@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Officers | Oakdale FBLA</title>
-  <meta name="description" content="Meet the 2026-2027 student officers leading Oakdale High School's FBLA chapter." />
+  <meta name="description" content="Meet the student officers leading Oakdale High School's FBLA chapter, past and present." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,52 +48,21 @@
   <section class="page-hero reveal">
     <div class="container">
       <h1>Meet Our Officers</h1>
-      <p>The 2026-2027 leadership board.</p>
+      <p>The student leadership board.</p>
     </div>
   </section>
 
-  <!-- ===== Officer Grid ===== -->
+  <!-- ===== Officer Grid =====
+       Filled in by script.js from the officers/ folder — edit the
+       .txt files there, not this HTML, to change officers or add a
+       new year. See officers/README.txt. -->
   <section class="reveal">
     <div class="container">
-      <div class="card-grid">
-
-        <div class="card officer-card">
-          <div class="officer-photo">JS</div>
-          <h3>Joshitha Sriperambudur</h3>
-          <div class="officer-position">President</div>
-        </div>
-
-        <div class="card officer-card">
-          <div class="officer-photo">AG</div>
-          <h3>Anika Gaur</h3>
-          <div class="officer-position">Vice President</div>
-        </div>
-
-        <div class="card officer-card">
-          <div class="officer-photo">CR</div>
-          <h3>Chinmaya Reddymalla</h3>
-          <div class="officer-position">Secretary</div>
-        </div>
-
-        <div class="card officer-card">
-          <div class="officer-photo">YC</div>
-          <h3>Yashwin Chava</h3>
-          <div class="officer-position">Treasurer</div>
-        </div>
-
-        <div class="card officer-card">
-          <div class="officer-photo">AS</div>
-          <h3>Ava Schirle</h3>
-          <div class="officer-position">Historian</div>
-        </div>
-
-        <div class="card officer-card">
-          <div class="officer-photo">TS</div>
-          <h3>Taylor Spencer</h3>
-          <div class="officer-position">Competitive Events Chair</div>
-        </div>
-
+      <div class="officer-year-row">
+        <label for="officer-year-select" class="officer-year-label">Officer Team:</label>
+        <select id="officer-year-select" class="year-select"></select>
       </div>
+      <div class="card-grid" id="officer-grid"></div>
     </div>
   </section>
 
