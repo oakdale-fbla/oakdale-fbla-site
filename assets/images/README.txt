@@ -40,16 +40,23 @@ proportions, so you just need to drop in a reasonably high-resolution file.
 
 OFFICER PHOTOS
 ==============
-Officer headshots go in this folder too. The site currently shows navy
-circles with initials instead of real photos so nothing looks broken.
-To swap one in:
-1. Add the image file here (e.g. assets/images/officer-joshitha.jpg).
-2. Replace a placeholder element like:
-     <div class="officer-photo">JS</div>
-   with:
-     <img class="officer-photo" src="assets/images/officer-joshitha.jpg" alt="Joshitha Sriperambudur">
-   You may want to add "object-fit: cover;" in styles.css under
-   .officer-photo if the photo looks stretched.
+Officer headshots go in assets/images/officers/ (create that folder if
+it doesn't exist yet). By default every officer just shows a navy
+initials circle instead of a photo, so nothing looks broken without one.
+
+Unlike the logo above, you don't edit any HTML to add one — officer
+cards are generated automatically from the text files in
+content/officers/, not written by hand. To add a photo:
+1. Prep the photo file the same way as gallery photos — see
+   "IMPORTANT — iPhone photos..." below (HEIC conversion, stripping
+   location/device metadata).
+2. Save it into assets/images/officers/.
+3. Open that officer's line in content/officers/2026-2027.txt (or
+   whichever year) and add the filename as a third field:
+     Joshitha Sriperambudur | President | joshitha.jpg
+   See content/officers/README.txt for the full format.
+4. Refresh the page — no other changes needed. A missing or mistyped
+   filename just falls back to the initials circle instead of breaking.
 
 EVENT / GALLERY PHOTOS
 =======================

@@ -134,13 +134,33 @@ document.addEventListener("DOMContentLoaded", function () {
             var name = parts[0].trim();
             var position = parts[1].trim();
             if (!name || !position) return;
+            // Optional 3rd field: a photo filename from
+            // assets/images/officers/. Leave it out (or mistype it) and
+            // the initials circle below just keeps showing instead —
+            // same self-healing pattern as the FBLA logo.
+            var photoFile = parts.length >= 3 ? parts[2].trim() : "";
 
             var card = document.createElement("div");
             card.className = "card officer-card";
 
             var photo = document.createElement("div");
             photo.className = "officer-photo";
-            photo.textContent = initialsFor(name);
+
+            var initialsEl = document.createElement("span");
+            initialsEl.className = "officer-initials";
+            initialsEl.textContent = initialsFor(name);
+            photo.appendChild(initialsEl);
+
+            if (photoFile) {
+              var img = document.createElement("img");
+              img.className = "officer-photo-img";
+              img.src = "assets/images/officers/" + photoFile;
+              img.alt = name;
+              img.onerror = function () {
+                img.remove();
+              };
+              photo.appendChild(img);
+            }
 
             var heading = document.createElement("h3");
             heading.textContent = name;
