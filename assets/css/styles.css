@@ -975,8 +975,8 @@ h3 {
 
 .officer-photo {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   margin: 0 auto 18px;
   background: var(--navy);
@@ -985,7 +985,7 @@ h3 {
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: 600;
   border: 2px solid var(--gold);
 }
@@ -1012,12 +1012,19 @@ h3 {
   font-size: 1.1rem;
 }
 
+/* A small pill badge instead of plain text — same "tag" treatment
+   used for gallery-tag, just inverted to a light cobalt tint since
+   this sits on a white card rather than over a photo. */
 .officer-position {
+  display: inline-block;
+  background: rgba(34, 106, 221, 0.1);
   color: var(--cobalt);
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: 999px;
 }
 
 /* ---------- Competitive events callout ---------- */
