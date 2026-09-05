@@ -975,8 +975,8 @@ h3 {
 
 .officer-photo {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   margin: 0 auto 18px;
   background: var(--navy);
@@ -985,7 +985,7 @@ h3 {
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 2.3rem;
+  font-size: 1.7rem;
   font-weight: 600;
   border: 2px solid var(--gold);
 }
